@@ -10,9 +10,12 @@ def test_teacher_can_create_course():
     Проверяет, что преподаватель может создать курс.
     Это внутренний (unit) тест через APIClient.
     """
+    user = User.objects.create_user(
+        username="teacher",
+        password="123456",
+        role="TEACHER"
+    )
 
-    # 1️⃣ Создаём тестового пользователя с ролью преподавателя (создаётся через conftest)
-    user = User.objects.get(username="GOD")
     # 2️⃣ Инициализируем тестовый клиент (встроенный в DRF)
     client = APIClient()
 

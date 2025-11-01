@@ -18,7 +18,7 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: test_db
-        ports: ["5432:5432"]
+        ports: [ "5432:5432" ]
         options: >-
           --health-cmd="pg_isready -U postgres"
           --health-interval=10s
@@ -51,3 +51,9 @@ jobs:
           DJANGO_SETTINGS_MODULE: config.settings
         run: |
           pytest -v
+      - name: ⚙️ Run Django server (background)
+        env:
+          DJANGO_SETTINGS_MODULE: config.settings
+        run: |
+          nohup python manage.py runserver 0.0.0.0:8000 &
+          sleep 5
