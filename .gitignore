@@ -1,0 +1,95 @@
+# ---- Системные файлы ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- IDE и редакторы ----
+.vscode/
+.idea/
+*.iml
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+.eggs/
+build/
+dist/
+pip-wheel-metadata/
+*.spec
+
+# ---- Виртуальное окружение ----
+venv/
+env/
+ENV/
+.venv/
+
+# ---- Django ----
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+staticfiles/
+static/
+local_settings.py
+
+# ---- Переменные окружения ----
+.env
+.env.*
+.envrc
+*.env
+
+# ---- Тесты и кэш pytest ----
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# ---- Система и контейнеры ----
+__MACOSX/
+*.bak
+*.tmp
+*.swp
+*.swo
+*.orig
+
+# ---- Docker ----
+*.pid
+*.seed
+*.pid.lock
+docker-compose.override.yml
+logs/
+data/
+*.db-journal
+
+# ---- Node (если есть фронтенд рядом) ----
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# ---- Misc ----
+*.sqlite3-journal
+*.log.*
+*.bak.*
+*.gz
+*.zip
+*.tar
+*.tgz
+*.rar
+
+# ---- JetBrains (PyCharm) ----
+.idea/
+*.ipr
+*.iws
+
+# ---- OS ----
+ehthumbs.db
+Icon?
+Network Trash Folder
+Temporary Items
