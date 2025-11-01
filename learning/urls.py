@@ -1,5 +1,6 @@
 from rest_framework.routers import DefaultRouter
-from .views import CourseViewSet, SectionViewSet, MaterialViewSet
+
+from .views import CourseViewSet, MaterialViewSet, SectionViewSet
 
 router = DefaultRouter()
 router.register("courses", CourseViewSet)

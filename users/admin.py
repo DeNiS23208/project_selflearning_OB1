@@ -1,7 +1,8 @@
 # Импортируем базовый "админ-класс" для пользователей,
 # который уже умеет показывать поля, фильтры и формы Django-пользователя.
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin  # Admin-класс (админ-интерфейс) для модели пользователя
+from django.contrib.auth.admin import \
+    UserAdmin  # Admin-класс (админ-интерфейс) для модели пользователя
 
 # Импортируем нашу модель пользователя
 from .models import User
@@ -19,7 +20,15 @@ class CustomUserAdmin(UserAdmin):
 
     # Какие колонки показывать в таблице пользователей (список)
     # — они видны на странице /admin/users/user/
-    list_display = ("username", "first_name", "last_name", "email", "role", "is_staff", "is_active")
+    list_display = (
+        "username",
+        "first_name",
+        "last_name",
+        "email",
+        "role",
+        "is_staff",
+        "is_active",
+    )
 
     # По каким полям можно быстро фильтровать справа
     list_filter = ("role", "is_staff", "is_active")
@@ -34,15 +43,34 @@ class CustomUserAdmin(UserAdmin):
     # 3) "Права доступа" — флаги и группы прав
     fieldsets = (
         (None, {"fields": ("username", "password")}),
-        ("Персональные данные", {"fields": ("first_name", "last_name", "email", "role")}),
-        ("Права доступа", {"fields": ("is_staff", "is_active", "groups", "user_permissions")}),
+        (
+            "Персональные данные",
+            {"fields": ("first_name", "last_name", "email", "role")},
+        ),
+        (
+            "Права доступа",
+            {"fields": ("is_staff", "is_active", "groups", "user_permissions")},
+        ),
     )
 
     # Конфигурация формы "добавить пользователя" (в админке кнопка "ADD USER")
     # По умолчанию UserAdmin показывает простую форму — мы расширяем её, чтобы там была role.
     add_fieldsets = (
-        (None, {
-            "classes": ("wide",),  # класс wide делает форму растянутой (более удобное поле ввода)
-            "fields": ("username", "email", "role", "password1", "password2", "is_staff", "is_active"),
-        }),
+        (
+            None,
+            {
+                "classes": (
+                    "wide",
+                ),  # класс wide делает форму растянутой (более удобное поле ввода)
+                "fields": (
+                    "username",
+                    "email",
+                    "role",
+                    "password1",
+                    "password2",
+                    "is_staff",
+                    "is_active",
+                ),
+            },
+        ),
     )

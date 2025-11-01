@@ -33,8 +33,8 @@ class IsStudent(permissions.BasePermission):
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
     """
-        Разрешение, позволяющее редактировать только владельцу.
-        Все остальные пользователи могут только читать.
+    Разрешение, позволяющее редактировать только владельцу.
+    Все остальные пользователи могут только читать.
     """
 
     def has_object_permission(self, request, view, obj):

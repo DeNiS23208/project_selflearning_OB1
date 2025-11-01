@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "drf_spectacular",
     "corsheaders",
-
     # local
     "users",
     "learning",
@@ -50,24 +49,21 @@ SPECTACULAR_SETTINGS = {
     "SERVE_INCLUDE_SCHEMA": False,
     "SERVE_PERMISSIONS": ["rest_framework.permissions.AllowAny"],
     "COMPONENT_SPLIT_REQUEST": True,
-
     # Отключаем внутреннюю сортировку (чтобы порядок был как в urls.py)
     "SORT_OPERATIONS": False,
-
     # Явно задаём порядок тегов (чтобы Swagger их не менял)
     "TAGS": [
         {"name": "materials", "description": "Материалы"},
         {"name": "courses", "description": "Курсы"},
         {"name": "sections", "description": "Разделы"},
-
     ],
-
     # Настройки самого Swagger UI (веб-интерфейс)
     "SWAGGER_UI_SETTINGS": {
         # сохраняем твой порядок тегов
-        "tagsSorter": "function(a,b){const order=['courses','sections','materials'];return order.indexOf(a)-order.indexOf(b);}",
+        "tagsSorter": "function(a,b){const order=['courses','sections','materials'];"
+        "return order.indexOf(a)-order.indexOf(b);}",
         # и порядок методов внутри тегов
-        "operationsSorter": "function(a,b){return 0;}"
+        "operationsSorter": "function(a,b){return 0;}",
     },
 }
 
@@ -84,9 +80,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    "DEFAULT_PERMISSION_CLASSES": (
-        "rest_framework.permissions.IsAuthenticated",
-    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",  # <— вот это добавили
 }
 
@@ -158,4 +152,4 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = "users.User"

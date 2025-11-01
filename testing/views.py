@@ -1,9 +1,11 @@
-from rest_framework import viewsets, permissions
+from rest_framework import permissions, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .models import Question, Answer, TestAttempt
-from .serializers import QuestionSerializer, TestAttemptSerializer
+
 from learning.models import Material
+
+from .models import Answer, Question, TestAttempt
+from .serializers import QuestionSerializer, TestAttemptSerializer
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
@@ -38,13 +40,15 @@ class TestAttemptViewSet(viewsets.ModelViewSet):
         attempt = TestAttempt.objects.create(
             user=user,
             material=Material.objects.get(id=material_id),
-            score=correct_count
+            score=correct_count,
         )
 
-        return Response({
-            "user": user.username,
-            "material": material_id,
-            "correct": correct_count,
-            "total": len(correct_answers),
-            "score": attempt.score
-        })
+        return Response(
+            {
+                "user": user.username,
+                "material": material_id,
+                "correct": correct_count,
+                "total": len(correct_answers),
+                "score": attempt.score,
+            }
+        )

@@ -1,3 +1,5 @@
+![Tests](https://img.shields.io/github/actions/workflow/status/DeNiS23208/project_selflearning_OB1/tests.yml?branch=main&label=Tests&style=for-the-badge&logo=github)
+
 # 📘 Платформа самообучения студентов
 
 Учебный бэкенд-сервис, реализованный на **Django REST Framework**,  
@@ -82,3 +84,15 @@ CORS_ALLOWED_ORIGINS=http://localhost:3000
 - JWT (SimpleJWT)  
 - CORS Headers  
 - PEP8, Git
+
+### Code Style
+Код проверяется с помощью:
+- **Black** — автоформатирование
+- **Flake8** — соответствие PEP8
+- **Isort** — сортировка импортов
+
+Запуск проверки:
+```bash
+black .
+flake8 .
+isort .

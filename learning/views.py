@@ -1,7 +1,8 @@
-from rest_framework import viewsets, permissions
-from .models import Course, Section, Material
-from .serializers import CourseSerializer, SectionSerializer, MaterialSerializer
-from .permissions import IsOwnerOrReadOnly
+from rest_framework import permissions, viewsets
+
+from .models import Course, Material, Section
+from .serializers import (CourseSerializer, MaterialSerializer,
+                          SectionSerializer)
 
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
@@ -26,6 +27,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     - TEACHER → может создавать и редактировать свои курсы
     - STUDENT → только смотреть
     """
+
     queryset = Course.objects.all().select_related("owner")
     serializer_class = CourseSerializer
 
@@ -53,6 +55,7 @@ class SectionViewSet(viewsets.ModelViewSet):
     """
     ViewSet для разделов.
     """
+
     queryset = Section.objects.all().select_related("course")
     serializer_class = SectionSerializer
 
@@ -71,6 +74,7 @@ class MaterialViewSet(viewsets.ModelViewSet):
     """
     ViewSet для материалов.
     """
+
     queryset = Material.objects.all().select_related("section")
     serializer_class = MaterialSerializer
 
