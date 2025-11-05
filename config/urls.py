@@ -26,6 +26,9 @@ urlpatterns = [
         "api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger"
     ),
     path("api/auth/", include("users.urls")),
-    path("api/", include("learning.urls")),
+    # разработчики или фронтенд-SPA используют /api/... для данных.
+    path("api/", include("learning.urls_api")),
     path("api/testing/", include("testing.urls")),
+    # пользователи (через браузер) видят красивые страницы base.html, courses.html;
+    path("", include("learning.urls_html")),
 ]

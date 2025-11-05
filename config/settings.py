@@ -49,7 +49,7 @@ SPECTACULAR_SETTINGS = {
     "SERVE_INCLUDE_SCHEMA": False,
     "SERVE_PERMISSIONS": ["rest_framework.permissions.AllowAny"],
     "COMPONENT_SPLIT_REQUEST": True,
-    # Отключаем внутреннюю сортировку (чтобы порядок был как в urls.py)
+    # Отключаем внутреннюю сортировку (чтобы порядок был как в urls_api.py)
     "SORT_OPERATIONS": False,
     # Явно задаём порядок тегов (чтобы Swagger их не менял)
     "TAGS": [
@@ -61,7 +61,7 @@ SPECTACULAR_SETTINGS = {
     "SWAGGER_UI_SETTINGS": {
         # сохраняем твой порядок тегов
         "tagsSorter": "function(a,b){const order=['courses','sections','materials'];"
-        "return order.indexOf(a)-order.indexOf(b);}",
+                      "return order.indexOf(a)-order.indexOf(b);}",
         # и порядок методов внутри тегов
         "operationsSorter": "function(a,b){return 0;}",
     },
@@ -89,10 +89,11 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
+                "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",

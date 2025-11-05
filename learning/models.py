@@ -1,9 +1,6 @@
 from django.conf import settings
 from django.db import models
 
-# Получаем ссылку на модель пользователя из AUTH_USER_MODEL
-User = settings.AUTH_USER_MODEL
-
 
 class Course(models.Model):
     """
@@ -12,7 +9,7 @@ class Course(models.Model):
     """
 
     owner = models.ForeignKey(
-        User,  # связь с таблицей пользователей
+        settings.AUTH_USER_MODEL,  # связь с таблицей пользователей
         on_delete=models.CASCADE,  # при удалении преподавателя удаляются его курсы
         related_name="courses",  # позволяет обращаться user.courses
     )
