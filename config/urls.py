@@ -20,15 +20,20 @@ from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
+    # админка
     path("admin/", admin.site.urls),
+    # Схема и Swagger DRF
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
-    path(
-        "api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger"
-    ),
+    path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger"),
+    # API (REST): JWT и профили
     path("api/auth/", include("users.urls")),
-    # разработчики или фронтенд-SPA используют /api/... для данных.
     path("api/", include("learning.urls_api")),
     path("api/testing/", include("testing.urls")),
+    path("", include("learning.urls_html")),
+    path("users/", include("users.urls")),
+
+
     # пользователи (через браузер) видят красивые страницы base.html, courses.html;
     path("", include("learning.urls_html")),
+    path("users/", include("users.urls_html")),
 ]

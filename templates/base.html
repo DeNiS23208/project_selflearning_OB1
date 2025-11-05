@@ -1,27 +1,86 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru"> <!-- Указываем язык страницы -->
 <head>
-  <meta charset="UTF-8">
-  <title>{% block title %}Платформа самообучения Гуляева Дениса{% endblock %}</title>
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body class="bg-light">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">📚 Платформа знаний 🎓</a>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item"><a class="nav-link" href="/">Курсы</a></li>
-          <li class="nav-item"><a class="nav-link" href="/materials/">Материалы</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    <meta charset="UTF-8"> <!-- Кодировка (чтобы не было кракозябр) -->
+    <title>{% block title %}Платформа самообучения Гуляева Дениса{% endblock %}</title>
+    <!-- Заголовок страницы, можно менять в каждом шаблоне через block title -->
 
-  <div class="container">
+    <!-- Подключаем CSS-фреймворк Bootstrap (готовые стили) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+
+<body class="bg-light"> <!-- Фон сайта — светло-серый -->
+
+<!-- ======= Шапка сайта (навигация) ======= -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <!-- navbar — это меню Bootstrap -->
+    <!-- navbar-expand-lg — раскрывается на больших экранах -->
+    <!-- navbar-dark bg-dark — тёмная тема (тёмный фон + светлый текст) -->
+    <!-- mb-4 — отступ снизу (margin-bottom: 24px) -->
+
+    <div class="container-fluid"> <!-- Контейнер для центрирования контента -->
+
+        <!-- ==== Логотип / Название сайта ==== -->
+        <a class="navbar-brand" href="/">📚 Платформа знаний 🎓</a>
+        <!-- .navbar-brand — стиль для логотипа или названия -->
+        <!-- href="/" — при клике ведёт на главную страницу -->
+
+        <!-- ==== Блок со ссылками ==== -->
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto">
+                <!-- .navbar-nav — контейнер для списка пунктов меню -->
+                <!-- me-auto — сдвигает блок влево (margin-end auto) -->
+
+                <li class="nav-item"><a class="nav-link" href="/">Курсы</a></li>
+                <!-- .nav-item — элемент меню -->
+                <!-- .nav-link — стилизованная ссылка Bootstrap -->
+                <!-- href="/" — путь до списка курсов -->
+
+                <li class="nav-item"><a class="nav-link" href="/materials/">Материалы</a></li>
+                <!-- href="/materials/" — путь до страницы материалов -->
+            </ul>
+
+            <!-- ==== Блок справа: Войти / Выйти ==== -->
+            <ul class="navbar-nav ms-auto">
+                <!-- ms-auto — margin-start auto (сдвигает блок вправо) -->
+
+                {% if user.is_authenticated %}
+                <!-- Если пользователь ВОШЁЛ в систему -->
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/logout/">Выйти ({{ user.username }})</a>
+                    <!-- Показываем ссылку "Выйти" и имя пользователя -->
+                </li>
+
+                {% else %}
+                <!-- Если пользователь НЕ вошёл -->
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/login/">Войти</a>
+                    <!-- Ссылка на страницу входа -->
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/register/">Регистрация</a>
+                    <!-- Ссылка на страницу регистрации -->
+                </li>
+
+                {% endif %}
+                <!-- Конец условия -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- ======= Конец шапки сайта ======= -->
+
+<!-- ======= Основное содержимое страницы ======= -->
+<div class="container">
     {% block content %}
     {% endblock %}
-  </div>
+</div>
+<!-- Внутрь этого блока подставляется содержимое из других шаблонов -->
+<!-- Например, список курсов, форма входа, профиль и т.д. -->
+
 </body>
 </html>

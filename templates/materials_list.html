@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Материалы{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h1 class="mb-3">Список материалов</h1>
+  <div class="list-group">
+    {% for material in materials %}
+      <a href="#" class="list-group-item list-group-item-action">
+        <h5 class="mb-1">{{ material.title }}</h5>
+        <p class="mb-1">{{ material.content }}</p>
+      </a>
+    {% empty %}
+      <p>Пока нет материалов.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

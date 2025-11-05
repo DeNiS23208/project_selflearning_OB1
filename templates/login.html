@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{# 🔹 Наследуем шаблон base.html (там общая структура: меню, стили, футер) #}
+
+{% block title %}Вход{% endblock %}
+{# 🔹 Устанавливаем заголовок страницы (вкладка браузера будет "Вход") #}
+
+{% block content %}
+{# 🔹 Начинаем блок контента, который подставится в <div class="container"> из base.html #}
+
+<div class="col-md-4 mx-auto">
+  {# 🔹 Создаём колонку шириной 4 колонки Bootstrap и центрируем по горизонтали #}
+
+  <h1 class="mb-3">Вход</h1>
+  {# 🔹 Заголовок страницы. mb-3 — отступ снизу (margin-bottom: 1rem × 3) #}
+
+  {% if error %}
+  {# 🔹 Если из view передана переменная error (например, "Неверные данные") #}
+  <div class="alert alert-danger">{{ error }}</div>
+  {# 🔹 Показываем красный блок Bootstrap с текстом ошибки #}
+  {% endif %}
+
+  <form method="post">
+    {# 🔹 Начинаем форму. method="post" — данные отправляются на сервер #}
+    {% csrf_token %}
+    {# 🔹 Django добавляет CSRF-токен (защита от подделки запросов) #}
+
+    <input class="form-control mb-2" name="username" placeholder="Логин">
+    {# 🔹 Поле для имени пользователя
+       form-control — базовый стиль Bootstrap
+       mb-2 — небольшой отступ снизу
+       name="username" — по этому имени Django возьмёт значение request.POST["username"] #}
+
+    <input class="form-control mb-3" name="password" type="password" placeholder="Пароль">
+    {# 🔹 Поле для пароля
+       type="password" — скрывает вводимые символы
+       name="password" — Django возьмёт request.POST["password"]
+       mb-3 — чуть больший отступ снизу #}
+
+    <button class="btn btn-dark w-100">Войти</button>
+    {# 🔹 Кнопка отправки формы
+       btn — стиль кнопки
+       btn-dark — тёмная кнопка
+       w-100 — ширина 100% (на всю колонку) #}
+  </form>
+</div>
+
+{% endblock %}
+{# 🔹 Закрываем блок контента. Всё, что выше, будет вставлено в base.html #}
